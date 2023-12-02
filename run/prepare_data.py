@@ -22,7 +22,7 @@ FEATURE_NAMES = [
     "enmo",
     "step",
     "hour_sin",
-    "hour_cos",
+    "hour",
     "month_sin",
     "month_cos",
     "minute_sin",
