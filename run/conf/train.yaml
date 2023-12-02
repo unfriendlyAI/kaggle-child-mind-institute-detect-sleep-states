@@ -62,7 +62,7 @@ features:
   # - "month_sin"
   # - "month_cos"
   - "hour_sin"
-  - "hour"
+  - "hour_cos"
   # - "minute_sin"
   # - "minute_cos"
   # - "anglez_sin"
