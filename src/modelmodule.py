@@ -57,7 +57,7 @@ class PLSleepModel(LightningModule):
             output.loss.detach().item(),
             on_step=False,
             on_epoch=True,
-            logger=False,
+            logger=True,
             prog_bar=True,
         )
         return output.loss
@@ -77,7 +77,7 @@ class PLSleepModel(LightningModule):
             output.loss.detach().item(),
             on_step=False,
             on_epoch=True,
-            logger=False,
+            logger=True,
             prog_bar=True,
         )
 
@@ -99,7 +99,7 @@ class PLSleepModel(LightningModule):
             distance=self.cfg.pp.distance,
         )
         score = event_detection_ap(self.val_event_df.to_pandas(), val_pred_df.to_pandas())
-        self.log("val_score", score, on_step=False, on_epoch=True, logger=False, prog_bar=True)
+        self.log("val_score", score, on_step=False, on_epoch=True, logger=True, prog_bar=True)
 
         if loss < self.__best_loss:
             np.save("keys.npy", np.array(keys))
