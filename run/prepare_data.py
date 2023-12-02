@@ -23,10 +23,6 @@ FEATURE_NAMES = [
     "step",
     "hour_sin",
     "hour",
-    "month_sin",
-    "month_cos",
-    "minute_sin",
-    "minute_cos",
     "anglez_sin",
     "anglez_cos",
 ]
@@ -54,10 +50,9 @@ def add_feature(series_df: pl.DataFrame) -> pl.DataFrame:
         series_df.with_row_count("step")
         .with_columns(
             *to_coord(pl.col("timestamp").dt.hour(), 24, "hour"),
-            *to_coord(pl.col("timestamp").dt.month(), 12, "month"),
-            *to_coord(pl.col("timestamp").dt.minute(), 60, "minute"),
             pl.col("step") / pl.count("step"),
             pl.col('anglez_rad').sin().alias('anglez_sin'),
+            pl.col("timestamp").dt.hour().alias('hour'),
             pl.col('anglez_rad').cos().alias('anglez_cos'),
         )
         .select("series_id", *FEATURE_NAMES)
