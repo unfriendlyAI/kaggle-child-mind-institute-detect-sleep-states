@@ -52,7 +52,7 @@ def add_feature(series_df: pl.DataFrame) -> pl.DataFrame:
             *to_coord(pl.col("timestamp").dt.hour(), 24, "hour"),
             pl.col("step") / pl.count("step"),
             pl.col('anglez_rad').sin().alias('anglez_sin'),
-            pl.col("timestamp").dt.hour().alias('hour'),
+            (pl.col("timestamp").dt.hour()/24).alias('hour'),
             pl.col('anglez_rad').cos().alias('anglez_cos'),
         )
         .select("series_id", *FEATURE_NAMES)
